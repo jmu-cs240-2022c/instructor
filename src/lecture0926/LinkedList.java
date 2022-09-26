@@ -1,7 +1,5 @@
 package lecture0926;
 
-import org.w3c.dom.Node;
-
 public class LinkedList<T> {
   private Node head;
   private Node tail;
