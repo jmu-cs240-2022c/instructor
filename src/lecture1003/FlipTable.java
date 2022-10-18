@@ -6,7 +6,7 @@ public class FlipTable {
     queue.enqueue("H");
     queue.enqueue("T");
 
-    int n = 51;
+    int n = 13;
 //    int dequeueCount = Math.pow(2, n + 1) - 2;
     int dequeueCount = (1 << (n + 1)) - 2;
 
