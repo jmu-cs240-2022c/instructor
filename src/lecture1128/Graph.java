@@ -44,6 +44,32 @@ public class Graph {
     return order;
   }
 
+  public List<Integer> topologicalSort2() {
+    ArrayList<Integer> order = new ArrayList<>();
+    HashSet<Integer> visiteds = new HashSet<>();
+
+    for (int i = 0; i < edges.length; ++i) {
+      if (!visiteds.contains(i)) {
+//        depthTraverse(i, visiteds, order);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(i);
+        while (!stack.isEmpty()) {
+          int vertex = stack.pop();
+          visiteds.add(vertex);
+          for (int neighbor : neighbors(vertex)) {
+            if (!visiteds.contains(neighbor)) {
+              stack.push(neighbor);
+            }
+          }
+          order.add(vertex);
+        }
+      }
+    }
+
+    Collections.reverse(order);
+    return order;
+  }
+
   public void depthTraverse(int vertex, HashSet<Integer> visiteds, LinkedList<Integer> order) {
     visiteds.add(vertex);
     for (int neighbor : neighbors(vertex)) {
@@ -61,6 +87,6 @@ public class Graph {
     g.addEdge(4, 2);
     g.addEdge(1, 3);
     g.addEdge(5, 0);
-    System.out.println(g.topologicalSort());
+    System.out.println(g.topologicalSort2());
   }
 }
